@@ -1,16 +1,13 @@
 //#include <dummy.h>
 
+#include "globals.h"
 
-//CLion
 #include <UMS3.h>
 #include "Adafruit_ThinkInk.h"
 
-#define EPD_DC      3  //10 // can be any pin, but required!
-#define EPD_CS      1  //9  // can be any pin, but required!
-#define SRAM_CS     38 //6  // can set to -1 to not use a pin (uses a lot of RAM!)
-#define EPD_BUSY    -1 //7  // can set to -1 to not use a pin (will wait a fixed delay)
-#define EPD_RESET   -1 //8  // can set to -1 and share with chip Reset (can't deep sleep)
-#define SCREEN_UPDATE_WAIT  30000
+#include "FS.h"
+#include "SD.h"
+#include "SPI.h"
 
 UMS3 ums3;
 ThinkInk_290_Tricolor_Z10 display(EPD_DC, EPD_RESET, EPD_CS, SRAM_CS, EPD_BUSY);
@@ -41,7 +38,7 @@ void loop() {
   }
 
   //Serial.print("Time since last update: ");
-  Serial.println(millis() - lastUpdateTime);
+  //Serial.println(millis() - lastUpdateTime);
   if (SCREEN_UPDATE_WAIT < millis() - lastUpdateTime) {
     if (curDemo == 0) {
       curDemo++;
