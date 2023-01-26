@@ -5,15 +5,9 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#include <UMS3.h>
-#include "Adafruit_ThinkInk.h"
+#include <Arduino.h>
 
-#include "FS.h"
-#include "SD.h"
-#include "SPI.h"
-
-
-
+#define DEBUG	false
 
 #define EPD_DC      3  //10 // can be any pin, but required!
 #define EPD_CS      1  //9  // can be any pin, but required!
@@ -25,6 +19,14 @@
 #define BUTTON_A	7
 #define BUTTON_B	10
 #define BUTTON_C	11
+
+
+/*
+ * Globals for SD
+ */
+#define SD_CS	33
+
+const String tagInfoFileName = "/taginfo.yml";
 
 
 

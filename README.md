@@ -19,6 +19,7 @@ Libraries to setup in
  - `Adafruit EPD`
  - `adafruit ImageReader`
  - `adafruit GFX`
+ - `YAMLDuino`
 
 ### Writing code to 
 

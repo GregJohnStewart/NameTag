@@ -1,10 +1,10 @@
 #include "TagInfo.h"
 
 TagInfo::TagInfo(
-	String fullNameIn,
-    String titleIn,
-    String locationIn,
-    String sinceIn,
+	InfoPart fullNameIn,
+    InfoPart titleIn,
+    InfoPart locationIn,
+    InfoPart sinceIn,
     String logoFileNameIn
 ){
 	fullName = fullNameIn;
@@ -14,22 +14,48 @@ TagInfo::TagInfo(
 	logoFileName = logoFileNameIn;
 }
 
-String TagInfo::getName(){
+TagInfo::TagInfo(
+	JsonObject configObj
+){
+}
+
+InfoPart TagInfo::getName(){
 	return fullName;
 }
 
-String TagInfo::getTitle(){
+InfoPart TagInfo::getTitle(){
 	return title;
 }
 
-String TagInfo::getLocation(){
+InfoPart TagInfo::getLocation(){
 	return location;
 }
 
-String TagInfo::getSince(){
+InfoPart TagInfo::getSince(){
 	return since;
 }
 
 String TagInfo::getLogoFileName(){
 	return logoFileName;
+}
+
+
+
+const char* TagInfo::getTemplateConfig(){
+	return R"_YAML_STRING_(
+# Change values to your liking!
+fullName:
+  value: John Doe
+  size: 5
+title:
+  value: Consultant
+  size: 3
+location:
+  value: North America
+  size: 3
+since:
+  value: 2000
+  size: 2
+logoImageFile: "" # example: /logo.bmp 
+)_YAML_STRING_";
 }

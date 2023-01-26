@@ -2,30 +2,39 @@
 #define TAG_INFO_H
 
 #include <Arduino.h>
+#include <ArduinoJson.h>
+#include <YAMLDuino.h>
+#include "InfoPart.h"
 
 class TagInfo {
 private:
-    String fullName;
-    String title;
-    String location;
-    String since;
+    InfoPart fullName;
+    InfoPart title;
+    InfoPart location;
+    InfoPart since;
     String logoFileName;
 	
 public:
     
     TagInfo(
-    	String fullName,
-    	String title,
-    	String location,
-    	String since,
+    	InfoPart fullName,
+    	InfoPart title,
+    	InfoPart location,
+    	InfoPart since,
     	String logoFileName
     );
     
-    String getName();
-    String getTitle();
-    String getLocation();
-    String getSince();
+    TagInfo(
+		JsonObject configObj
+    );
+    
+    InfoPart getName();
+    InfoPart getTitle();
+    InfoPart getLocation();
+    InfoPart getSince();
     String getLogoFileName();
+    
+    static const char* getTemplateConfig();
 };
 
 #endif
