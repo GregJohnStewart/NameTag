@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#define HAS_ARDUINOJSON
 #include <YAMLDuino.h>
 #include "InfoPart.h"
 
@@ -27,6 +28,8 @@ public:
     TagInfo(
 		JsonObject configObj
     );
+
+    TagInfo();
     
     InfoPart getName();
     InfoPart getTitle();

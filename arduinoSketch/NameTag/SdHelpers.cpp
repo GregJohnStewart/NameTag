@@ -1,6 +1,27 @@
 #include "SdHelpers.h"
 
+void SdHelpers::readInTagInfo(){
+	File file = SD.open(tagInfoFileName);
+	
+	if( !file ) {
+		LifeHelpers::unrecoverableError("Can't open config file for reading.");
+	}
 
+	DynamicJsonDocument jsonDoc(2048);
+	const char* data = "";
+	auto err = deserializeYml(jsonDoc, file); // convert yaml to json
+	file.close();
+	
+	if( err ) {
+		LifeHelpers::unrecoverableError(String("Unable to deserialize YAML to JsonDocument: ") + String(err.c_str()));
+	}
+	
+	JsonObject configJson = jsonDoc.as<JsonObject>();
+
+	TagInfo newInfo(configJson);
+	
+	SdHelpers::tagInfoObj = newInfo;
+}
 
 void SdHelpers::doSetup(){
 	if(!SD.begin(SD_CS)){
@@ -38,8 +59,5 @@ void SdHelpers::doSetup(){
 		LifeHelpers::unrecoverableError("No info file/ could not write info file:\n" + tagInfoFileName);
 	}
 
-	
-	
-	
-	
+	SdHelpers::readInTagInfo();
 }

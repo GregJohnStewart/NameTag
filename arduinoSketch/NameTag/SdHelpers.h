@@ -8,6 +8,8 @@
 #include <SD.h>
 #include <SPI.h>
 #include <FS.h>
+#include <ArduinoJson.h>
+#define HAS_ARDUINOJSON
 #include <YAMLDuino.h>
 
 #include "globals.h"
@@ -18,7 +20,9 @@
 
 class SdHelpers{
 	private:
-		static TagInfo tagInfo;
+		inline static TagInfo tagInfoObj;
+
+		static void readInTagInfo(); 
 	public:
 		static void doSetup();
 		static const TagInfo* getTagInfo();

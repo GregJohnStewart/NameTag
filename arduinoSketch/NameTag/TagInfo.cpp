@@ -1,5 +1,9 @@
 #include "TagInfo.h"
 
+TagInfo::TagInfo(){
+	
+}
+
 TagInfo::TagInfo(
 	InfoPart fullNameIn,
     InfoPart titleIn,
@@ -17,6 +21,7 @@ TagInfo::TagInfo(
 TagInfo::TagInfo(
 	JsonObject configObj
 ){
+	//TODO
 }
 
 InfoPart TagInfo::getName(){
